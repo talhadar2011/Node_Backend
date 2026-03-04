@@ -15,11 +15,11 @@ app.get('/', (req, res) => {
 });
 app.post("/post", async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, post} = req.body;
 
     const newPost = await Post.create({
       title,
-      content
+      post
     });
 
     res.status(201).json({
