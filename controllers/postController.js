@@ -1,4 +1,4 @@
-import{Post} from '../models/postModel'
+import{Post} from '../models/postModel.js'
 
 export const create_Post=async(req,res)=>{
     try{
@@ -6,7 +6,7 @@ export const create_Post=async(req,res)=>{
 
         const newpost=await Post.create({
             title:title,
-            psot:post,
+            post:post,
         })
         res.status(201).json({
             sucess:true,

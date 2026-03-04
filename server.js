@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import connectDB from './config/config.js';
-import {Post} from'./models/postModel.js'
+import postRouter from './routes/postRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -13,27 +13,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-app.post("/post", async (req, res) => {
-  try {
-    const { title, post} = req.body;
 
-    const newPost = await Post.create({
-      title,
-      post
-    });
+app.use("/",postRouter)
 
-    res.status(201).json({
-      success: true,
-      data: newPost
-    });
-
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
-  }
-});
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
